@@ -11,7 +11,7 @@ dest_files=[ "res://.import/blockSnowQuarter.glb-1e99f96ef18d83e293bf94c203ccfe5
 
 [params]
 
-nodes/root_type="Spatial"
+nodes/root_type="StaticBody"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""
