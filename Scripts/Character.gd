@@ -7,6 +7,10 @@ var jump_force := 6
 var gravity := Vector3.DOWN * 12
 var mouse_rotation := 0.05
 
+var currentHP := 10
+var maxHP := 10
+var damage :=1
+
 var is_jumping := false
 
 func _ready():
@@ -26,6 +30,8 @@ func _physics_process(delta):
 	var snap_vector = Vector3.DOWN if not is_jumping else Vector3.ZERO
 	
 	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 4, deg2rad(70))
+	
+	print(currentHP)
 	
 func move_input(delta):
 	var input = Vector3.ZERO
@@ -51,3 +57,12 @@ func _unhandled_input(event):
 		
 	if Input.is_action_just_pressed("ui_accept") and Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
+func take_damage(damage):
+	currentHP -= damage
+	
+	if currentHP <= 0:
+		die()
+		
+func die():
+	get_tree().reload_current_scene()
